@@ -1,7 +1,7 @@
 # Andy Yu
 '''
 Check if two string inputs are anagrams of each other.
-Difficulty: 3
+Difficulty: Easy
 
 Solution: 
 O(n) time
