@@ -14,7 +14,7 @@ Given encoded message "12", it could be decoded as "AB" (1 2) or "L" (12).
 
 The number of ways decoding "12" is 2.
 
-Difficulty: Medium
+Difficulty: Medium-Hard
 
 Solution notes:
 Clearly a recurrence relation type problem. We can split the solution for a message of length n into two different outcomes.
