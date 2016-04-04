@@ -30,7 +30,8 @@ same gas if you had just started at A.
 
 Using these two ideas, we can begin to build out our solution. The basic premise of my solution is to basically eliminate the stations
 we CAN'T start at, so that if we can reach the 'end' starting at a certain station and the solution is actually possible (sumgas > sumcost),
-then 
+then we can confidently return the index of the start station that we reached the end with (since we must have also been able to go from the
+start of the index -> start station - 1).
 
 O(n) time
 O(1) space
