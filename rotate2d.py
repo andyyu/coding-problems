@@ -23,6 +23,14 @@ Solution notes:
 O(n) time // where n is the number of elements in the 2d array.
 O(1) space
 
+bonus: super pythonic version (not mine!)
+def rotate(self, A):
+  A[:] = zip(*A[::-1])
+
+[::-1] reverses the order of the lists in the 2d array, so it essentially flips it upside down.
+zip() "groups" the first element of each list into a list, the 2nd element of each list into the 2nd...
+and so on. This results in transposition of the array.
+
 '''
 
 def rotate(matrix):
