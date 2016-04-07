@@ -29,6 +29,9 @@ Difficulty: Easy-Medium
 Solution notes:
 O(logn) time
 O(1) space
+
+*interestingly enough, the binary search solution runs slower on leetcode.
+Maybe because they don't run with testcases large enough where it matters.
 '''
 def search_insert(nums, target):
   if len(nums) == 0:
@@ -37,7 +40,7 @@ def search_insert(nums, target):
   if target <= nums[middle]:
     return search_insert(nums[0:middle], target)
   else:
-    return middle + search_insert(nums[middle+1:len(nums)], target)
+    return middle + 1 + search_insert(nums[middle+1:len(nums)], target)
 
 
         
