@@ -18,4 +18,6 @@ O(n) space
 '''
 
 def find_peak_element(nums):
-  
+  min = nums[0]
+  max = nums[len(nums)-1]
+   
