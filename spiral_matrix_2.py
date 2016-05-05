@@ -32,7 +32,7 @@ and then add another list
 
 Until I finally place the 1.
 
-O(n) time
+O(n^2) time
 O(1) space
 '''
 
