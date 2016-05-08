@@ -13,11 +13,8 @@ Note: You may assume you have an infinite number of each coin.
 Difficulty: Medium
 
 Solution notes:
-O(amount*coins) time
-O(amount) space
-Dynamic programming
-'''
 
+- First iteration -
 def compute_change(coins, amount):
   previous_results = {}
 
@@ -36,5 +33,19 @@ def compute_change(coins, amount):
 
   return previous_results.get(amount, -1)
 
-if __name__ == "__main__":
-    print compute_change([1, 2, 5], 0)
+However, this solution is too slow (and also doesn't work for certain cases, can you figure out which?)
+
+O(amount*coins) time
+O(amount) space
+Dynamic programming
+'''
+
+def coinChange(self, coins, amount):
+  # intialize a list [0, MAX_INT, MAX_INT, ...]
+  previous_results = [0] + [float('inf')]*amount
+  # step through total amount
+  for i in xrange(1, amount + 1):
+      # list comprehension is MUCH faster, but the concept is the same as above solution - read the above if this doesn't make sense
+      previous_results[i] = min([previous_results[i-c] if i >= c else float('inf') for c in coins]) + 1
+  return -1 if previous_results[amount] == float('inf') else previous_results[amount]
+        
