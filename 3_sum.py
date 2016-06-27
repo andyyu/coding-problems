@@ -1,34 +1,41 @@
 # Andy Yu
 '''
-Given an array S of n integers, find three integers in S such that the sum is closest to a given number, target. 
-Return the sum of the three integers. 
-You may assume that each input would have exactly one solution.
-    
-For example, given array S = {-1 2 1 -4}, and target = 1.
-The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
 
-Difficulty: Medium
+Note: The solution set must not contain duplicate triplets.
 
-Solution notes:
+For example, given array S = [-1, 0, 1, 2, -1, -4],
+
+A solution set is:
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+
+Difficult: Medium
+
+Solution Notes:
+Sort list, then use 2 pointers to cover every combination. See 3_sum_closest for more explanation.
+
 O(n^2) time
 O(1) space
-
 '''
-def three_sum_closest(nums, target):
-  nums.sort()                                  # first, sort ascending
-  closest = nums[0] + nums[1] + nums[2]        # initial placeholder
-  for i in xrange(len(nums) - 2):              # iterate i through the 3rd to last value (j and k occupy the last two)
-    j = i + 1                                  # start j at i+1
-    k = len(nums) - 1                          # start k at the end
-    while j < k:                               # j and k will move closer together until the closest value using that specific i is found
-        temp = nums[i] + nums[j] + nums[k]     
-        if temp == target:                     # target found
-            return temp
-        if abs(target-temp) < abs(target-closest):  # update closest value
-            closest = temp
-        if temp < target:                      # if calculated value is too small, move j right (increasing the value)
-            j += 1
-        else:                                  # if calculated value is too big, move k left (decreasing the value)
-            k -= 1
-  return closest
+def threeSum(self, nums):
+  res = []
+  sorted_list = sorted(nums)
+  for left in xrange(0, len(nums)-2):
+    mid = left + 1
+    right = len(nums) - 1
+    while mid < right:
+      new_list = [sorted_list[left], sorted_list[mid], sorted_list[right]]
+      s = sum(new_list)
+      if s > 0:
+        right -= 1
+      elif s < 0:
+        mid += 1
+      else:
+        if new_list not in res: 
+          res.append(new_list)
+        mid += 1
+  return res
 
