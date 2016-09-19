@@ -30,24 +30,25 @@ Then I just use DFS to search through the graph for the answer, avoiding loops b
 '''
 
 def calculate_equation(equations, values, queries):
-  graph = collections.defaultdict(dict)
-  for fraction, value in zip(equations, values):
-    graph[fraction[0]][fraction[1]] = value
-    graph[fraction[1]][fraction[0]] = 1/value
-    graph[fraction[0]][fraction[0]] = 1.0
-    graph[fraction[1]][fraction[1]] = 1.0
-  return [dfs(graph, query[0], query[1], []) for query in queries]
+    # generate directed graph
+  graph = collections.defaultdict(dict)  # create empty dict that will automatically create an empty default "dict" as a value if a nonexisting key in the outer dict is accessed
+  for fraction, value in zip(equations, values):  # iterate over equation and value pairs
+    graph[fraction[0]][fraction[1]] = value       # add edge a->b of weight value
+    graph[fraction[1]][fraction[0]] = 1/value     # add edge b->a of weight 1/value
+    graph[fraction[0]][fraction[0]] = 1.0         # add edge a->a of weight 1
+    graph[fraction[1]][fraction[1]] = 1.0         # add edge b->b of weight 1
+  return [dfs(graph, query[0], query[1], []) for query in queries] # return list of results for every query
 
 def dfs(graph, start, end, path):
-  if start in graph and end in graph:
-    for node in graph[start]:
-      if node == end:
-        return graph[start][node]
-      if node not in path:
-        val = dfs(graph, node, end, path+[node])
-        if val != -1:
-          return graph[start][node]*val
-  return -1.0
+  if start in graph and end in graph: # check if both start and end nodes are in the directed graph, if not then there can't be an answer
+    for node in graph[start]:         # check every node connected by an edge to the "start" node
+      if node == end:                 # solution found. return the weight of that edge
+        return graph[start][node]     
+      if node not in path:            # check path to avoid loop
+        val = dfs(graph, node, end, path+[node])  # recurse using each connected node (DFS), add node to path
+        if val != -1:                 # DFS found answer
+          return graph[start][node]*val   # bubble up values to top
+  return -1.0  # couldn't find answer
 
   
 
