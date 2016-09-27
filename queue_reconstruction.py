@@ -18,7 +18,7 @@ Output:
 Difficult: Medium
 
 Solution Notes:
-Easiest way that I thought of was to first create a dictionary (I called it height_map) that maps people as entries of key "h" and value "k".
+Easiest way I thought of was to first create a dictionary (I called it height_map) that maps people as entries of key "h" and value "k".
 This produces something like:
 7: 0, 1
 6: 1
