@@ -18,7 +18,7 @@ Output:
 Difficulty: Easy
 
 Solution notes:
-O(n) time
+O(nlogn) time
 O(n) space
 '''
 
