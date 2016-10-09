@@ -56,6 +56,8 @@ Look at C. Can't swap with A because its bigger than A.
 Look at H. Can't swap with C or A because its bigger.
 Look at K. Can't swap.
 Look at D. First to be able to swap (we can swap with either K or H behind it). We should then swap with the smallest one larger than D (H).
+Checking all of these letters to see if it's swappable would take n^2 time, but we can just use the idea that as long as the letters continue increasing, they are not swappable.
+As soon as we hit a letter that is smaller than the one before it (D is smaller than K, in this case), we know that there must be a letter behind it that is lexicographically smaller.
 New step: once we find the "swapping" letter, sort the end sequence of letters past it. 
 Swapping D and H would produce: H K D C A. However, this is not the correct answer yet. We must sort the end sequence past the original swapped letter's index (0).
 This means we have to sort H [KDCA] <- this part, to become H A C D K, which is the correct answer.
