@@ -36,18 +36,20 @@ The only problem with this is keeping the well-formedness. This was solved by ad
 on line 50 in this file. This ensures that a closing brace is added only if there are currently unclosed opening braces in the build. 
 
 '''
-def generateParenthesis(self, n):
+def generateParenthesis(n):
   res = []
-  self.generateHelper(res, n, n)
-  return list(set(res))
+  generateHelper(res, n, n)
+  return res
                 
-def generateHelper(self, res, left, right, build=""):
+def generateHelper(res, left, right, build=""):
   if left == 0 and right == 0:
     res.append(build)
   else:
       if left > 0:
-          self.generateHelper(left-1, right, res, build + "(")
+          generateHelper(res, left-1, right, build + "(")
       if left < right and right > 0:
-          self.generateHelper(left, right-1, res, build + ")")
+          generateHelper(res, left, right-1, build + ")")
 
+if __name__ == '__main__':
+  print generateParenthesis(6)
 
