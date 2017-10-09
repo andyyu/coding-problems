@@ -2,9 +2,6 @@
 '''
 Given an n x n chessboard where n > 3, place n queens such that none of them are attacking each other.
 
-
-Note:
-
 --------------------------------------------------------------------------------
 
 Difficulty: Medium
