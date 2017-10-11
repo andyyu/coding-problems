@@ -24,7 +24,8 @@ buy[n]
 sell[n]
 cooldown[n]
 
-where buy[i] would equal the max profit when the last operation on or before day i was "buy". Our transition states would be:
+where buy[i] would equal the max profit when the last operation on or before day i was "buy". Likewise for "sell" and "cooldown".
+Our transition states would be:
 
 buy[i] = max(cooldown[i-1]-price, buy[i-1])
 sell[i] = max(buy[i-1]+price, sell[i-1])
@@ -34,6 +35,10 @@ Since cooldown is the max of itself or sell, it can never be greater than sell. 
 
 buy[i] = max(sell[i-2]-price, buy[i-1])
 sell[i] = max(buy[i-1]+price, sell[i-1])
+
+There does exist a O(1) space solution, but it uses this solution as a stepping stone / part of the derivation.
+I believe this solution to contain the bulk of the logic and won't be doing the trivial optimizations required to reduce the space complexity.
+This will be left up to the reader - hint: we only ever access the past 2 values, so we don't need to memoize the whole thing.
 
 O(n) time
 O(n) space
