@@ -8,6 +8,8 @@ Difficulty: Medium
 
 Solution notes:
 backtracking / recursion
+Note - when we check for queen conflicts, we only have to check "previous" squares since we are building from col 0 -> n.
+Reducing the problem space helps reduce complexity.
 
 O(2^(n^2)) time (finding all solutions for n-queens is NP-Complete!)
 O(n^2) space
